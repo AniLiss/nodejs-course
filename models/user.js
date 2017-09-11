@@ -1,4 +1,6 @@
 /*Created by elizaveta_anackaya on 10/09/2017.*/
+'use strict';
+
 class User {
     constructor(name) {
         this.name = name;
@@ -9,4 +11,4 @@ class User {
     }
 }
 
-exports.User= User;
+module.exports = User;
