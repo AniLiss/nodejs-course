@@ -5,5 +5,6 @@
 
 const Product = require('./product');
 const User = require('./user');
+const DirWatcher = require('./dirwatcher');
 
-module.exports = {Product, User};
+module.exports = {Product, User, DirWatcher};
