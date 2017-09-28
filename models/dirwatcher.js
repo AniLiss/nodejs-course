@@ -1,6 +1,5 @@
 'use strict';
 const EventEmitter = require('events');
-const emitter = new EventEmitter();
 
 const fs = require('fs');
 
@@ -21,7 +20,7 @@ class DirWatcher extends EventEmitter {
     watch() {
         fs.watch(this.path, (eventType, filename) => {
             if (eventType === 'change') {
-                emitter.emit('fileChanged');
+                this.emit('fileChanged');
             };
         });
     }
@@ -29,4 +28,3 @@ class DirWatcher extends EventEmitter {
 }
 
 module.exports = DirWatcher;
-module.exports = emitter;
