@@ -4,9 +4,17 @@ const emitter = new EventEmitter();
 
 const fs = require('fs');
 
-class DirWatcher {
-    constructor(path, delay) {
-        this.path = path;
+var filePath = ('./data/MOCK_DATA.csv');
+//var file = fs.readFileSync(filePath);
+
+//console.log('Initial File content : ' + file);
+
+class DirWatcher extends EventEmitter {
+
+    constructor(filePath, delay) {
+        super(filePath, delay)
+
+        this.path = filePath;
         this.delay = delay;
     }
 
