@@ -1,27 +1,26 @@
-'use strict';
 const EventEmitter = require('events');
-
 const fs = require('fs');
+const path = require('path');
 
-var filePath = ('./data/MOCK_DATA.csv');
-//var file = fs.readFileSync(filePath);
+//const file = fs.readFileSync(filePath);
 
 //console.log('Initial File content : ' + file);
 
 class DirWatcher extends EventEmitter {
 
-    constructor(filePath, delay) {
-        super(filePath, delay)
+    constructor(filePath) {
+        super();
 
         this.path = filePath;
-        this.delay = delay;
+        // this.delay = delay;
     }
 
     watch() {
-        fs.watch(this.path, (eventType, filename) => {
-            if (eventType === 'change') {
-                this.emit('fileChanged');
-            };
+        fs.watch(this.path, (event, filename) => {
+            if (event === 'rename') {
+                const fullPath = path.resolve(this.path);
+                this.emit('dirwatcher:changed', fullPath);
+            }
         });
     }
 
